@@ -3,7 +3,11 @@ import pandas as pd
 
 
 PAGES_FORMATS = {
-    'udemy' : {'date_format': '%Y-%d-%M', 'geo_format': 'GEO2'}
+    'Udemy' : {'date_format': '%Y-%d-%M', 'geo_format': 'GEO2', 'usr_doc': True},
+    'Coursera': {'date_format': '%Y-%M-%d', 'geo_format': '', 'usr_doc': True},
+    'Platzi' : {'date_format': '%M-%d-%Y', 'geo_format': 'GEO3', 'usr_doc': False},
+    'Escuelita_Valores' : {'date_format': '%M-%d-%Y', 'geo_format': 'GEO3', 'usr_doc': False, 'JSON': True},
+
 
 }
 
