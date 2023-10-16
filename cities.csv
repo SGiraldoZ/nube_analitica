@@ -1,0 +1,39 @@
+CIUDAD,GEO2,GEO3,PAIS,PAISGEO2,PAISGEO3
+Nueva York,NY,NYC,Estados Unidos,US,USA
+Los Ángeles,CA,LAX,Estados Unidos,US,USA
+Chicago,IL,CHI,Estados Unidos,US,USA
+Houston,TX,HOU,Estados Unidos,US,USA
+Phoenix,AZ,PHX,Estados Unidos,US,USA
+Philadelphia,PA,PHL,Estados Unidos,US,USA
+San Antonio,TX,SAT,Estados Unidos,US,USA
+San Diego,CA,SAN,Estados Unidos,US,USA
+Dallas,TX,DFW,Estados Unidos,US,USA
+San José,CA,SJC,Estados Unidos,US,USA
+Jacksonville,FL,JAX,Estados Unidos,US,USA
+Indianápolis,IN,IND,Estados Unidos,US,USA
+Austin,TX,AUS,Estados Unidos,US,USA
+San Francisco,CA,SFO,Estados Unidos,US,USA
+Columbus,OH,CMH,Estados Unidos,US,USA
+Charlotte,NC,CLT,Estados Unidos,US,USA
+Fort Worth,TX,FTW,Estados Unidos,US,USA
+Detroit,MI,DTW,Estados Unidos,US,USA
+El Paso,TX,ELP,Estados Unidos,US,USA
+Memphis,TN,MEM,Estados Unidos,US,USA
+Baltimore,MD,BWI,Estados Unidos,US,USA
+Boston,MA,BOS,Estados Unidos,US,USA
+Seattle,WA,SEA,Estados Unidos,US,USA
+Washington,DC,DCA,Estados Unidos,US,USA
+Nashville,TN,BNA,Estados Unidos,US,USA
+Denver,CO,DEN,Estados Unidos,US,USA
+Milwaukee,WI,MKE,Estados Unidos,US,USA
+Portland,OR,PDX,Estados Unidos,US,USA
+Oklahoma City,OK,OKC,Estados Unidos,US,USA
+Las Vegas,NV,LAS,Estados Unidos,US,USA
+Albuquerque,NM,ABQ,Estados Unidos,US,USA
+Bogota,BO,BOG,Colombia,CO,COL
+Medellin,ME,MED ,Colombia,CO,COL
+Cali,CA,CAL,Colombia,CO,COL
+San Andres y Providencia,SA,SAP,Colombia,CO,COL
+Cartagena,CT,CTG,Colombia,CO,COL
+Barranquilla,BA,BAQ,Colombia,CO,COL
+Santa Marta,SM,SMT,Colombia,CO,COL

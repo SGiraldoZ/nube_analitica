@@ -1,0 +1,1 @@
+CREATE USER 'analitica'@'localhost' IDENTIFIED BY 'password';
