@@ -64,10 +64,10 @@ def generar_usuarios(uni, qty=1):
 
     cities = pd.read_csv("cities.csv")
 
-    insert_cliente = '''INSERT INTO clientes (ciudad, pais, n_doc_cliente, email_cliente, nombre_cliente, fecha_nacimiento)
-                       VALUES (%s,%s,%s,%s,%s,%s);'''
+    insert_cliente = '''INSERT INTO clientes (ciudad, pais, n_doc_cliente, email_cliente, nombre_cliente, fecha_nacimiento, id_usuario)
+                       VALUES (%s,%s,%s,%s,%s,%s,0);'''
     for i in range(qty):
-        locacion_seleccionada = cities.sample()
+        locacion_seleccionada = cities.iloc[random.randint(0,cities.shape[0]-1)]
         ciudad_selccionada = locacion_seleccionada['CIUDAD'+configuraciones['geo_format']]
         pais_selccionado = locacion_seleccionada['PAIS'+configuraciones['geo_format']]
         email = generate_random_email()
@@ -75,7 +75,7 @@ def generar_usuarios(uni, qty=1):
         nombre = generate_random_user_name()
         fecha_nacimiento = generate_random_birthday().date()
 
-        vars = (ciudad_selccionada, pais_selccionado, email, doc_identidad,nombre, fecha_nacimiento)
+        vars = (ciudad_selccionada, pais_selccionado,doc_identidad, email,nombre, fecha_nacimiento)
 
         cur.execute(insert_cliente, vars)
         conn.commit()
@@ -149,5 +149,6 @@ def generate_random_user_name():
 
     
 if __name__ == "__main__":
-    generar_cursos('Coursera')
+    # generar_cursos('Coursera')
+    generar_usuarios('Coursera', qty=20)
     #generar_compras_dia('Coursera')
