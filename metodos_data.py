@@ -53,13 +53,101 @@ def generar_compras_dia(uni, qty=10, low_price=10, high_price =100):
     conn.close()
         
 def generar_usuarios(uni, qty=1):
-    pass
+    conn = connector.connect(user=username,
+                         password=password,
+                         host=host,
+                         database=uni)
+
+    cur = conn.cursor()
+
+    configuraciones = PAGES_FORMATS.get(uni)
+
+    cities = pd.read_csv("cities.csv")
+
+    insert_cliente = '''INSERT INTO clientes (ciudad, pais, n_doc_cliente, email_cliente, nombre_cliente, fecha_nacimiento)
+                       VALUES (%s,%s,%s,%s,%s,%s);'''
+    for i in range(qty):
+        locacion_seleccionada = cities.sample()
+        ciudad_selccionada = locacion_seleccionada['CIUDAD'+configuraciones['geo_format']]
+        pais_selccionado = locacion_seleccionada['PAIS'+configuraciones['geo_format']]
+        email = generate_random_email()
+        doc_identidad = generate_random_id_number() if configuraciones['usr_doc'] else None
+        nombre = generate_random_user_name()
+        fecha_nacimiento = generate_random_birthday().date()
+
+        vars = (ciudad_selccionada, pais_selccionado, email, doc_identidad,nombre, fecha_nacimiento)
+
+        cur.execute(insert_cliente, vars)
+        conn.commit()
+
+    conn.close()
+
 
 def generar_cursos(uni, qty=1):
     pass
  
 def exportar_batch(uni):
     pass
+
+def generate_random_email():
+  domains = [
+    'gmail.com',
+    'hotmail.com',
+    'yahoo.com',
+    'outlook.com',
+  ]
+
+  domain = random.choice(domains)
+  username = ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(random.randint(5, 10)))
+  return f'{username}@{domain}'
+
+def generate_random_birthday(min_year=1950, max_year=2005):
+  """Genera una fecha de nacimiento aleatoria dentro de un rango de años especificado.
+
+  Args:
+    min_year: Año mínimo.
+    max_year: Año máximo.
+
+  Returns:
+    Una fecha de nacimiento.
+  """
+  year = random.randint(min_year, max_year)
+  month = random.randint(1, 12)
+  day = random.randint(1, 28)
+  return datetime(year, month, day)
+
+def generate_random_id_number(length=10):
+  """Genera un documento de identidad aleatorio solo con números y con una longitud especificada.
+
+  Args:
+    length: La longitud del documento de identidad.
+
+  Returns:
+    Un documento de identidad aleatorio.
+  """
+
+  while True:
+    id_number = ''.join(str(random.randint(1, 9)) for _ in range(length))
+    if id_number[0] != '0':
+      return id_number
+
+def generate_random_user_name():
+  """Genera un nombre aleatorio de la forma `user+5_digitos`.
+
+  Returns:
+    Un nombre aleatorio de la forma `user+5_digitos`.
+  """
+
+  # Nombre de usuario.
+  user_name = "user"
+
+  # Genera 5 dígitos aleatorios.
+  digits = "".join(str(random.randint(0, 9)) for _ in range(5))
+
+  # Devuelve el nombre de usuario con los 5 dígitos aleatorios.
+  return user_name + digits
+
     
 if __name__ == "__main__":
-    generar_compras_dia('Coursera')
+    generar_cursos('Coursera')
+    #generar_compras_dia('Coursera')
