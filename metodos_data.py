@@ -52,9 +52,6 @@ def generar_compras_dia(uni, qty=10, low_price=10, high_price =100):
 
     conn.close()
         
-
-
-
 def generar_usuarios(uni, qty=1):
     pass
 
