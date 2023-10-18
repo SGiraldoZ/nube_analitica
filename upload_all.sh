@@ -13,8 +13,8 @@ filenames=("Udemy" "Coursera" "Escuelita_Valores" "Platzi")
 current_date=$(date +'%Y-%m-%d')
 
 # Iterate over the list of filenames
-for filename in "${filenames[*]}"; do
-  full_filename="${filename}_${current_date}.*"
+for filename in ${filenames[*]}; do
+  full_filename="${filename}_${current_date}.csv"
   echo "Uploading $full_filename..."
   az storage blob upload \
     --account-name "$account_name" \
