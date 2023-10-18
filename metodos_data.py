@@ -13,10 +13,10 @@ password = os.getenv('DB_PASSWORD')
 host = os.getenv('DB_HOST')
 
 PAGES_FORMATS = {
-    'Udemy' : {'date_format': '%Y-%d-%M', 'geo_format': 'GEO2', 'usr_doc': True},
-    'Coursera': {'date_format': '%Y-%M-%d', 'geo_format': '', 'usr_doc': True},
-    'Platzi' : {'date_format': '%M-%d-%Y', 'geo_format': 'GEO3', 'usr_doc': False},
-    'Escuelita_Valores' : {'date_format': '%d-%M-%Y', 'geo_format': 'GEO3', 'usr_doc': False, 'JSON': True}
+    'Udemy' : {'date_format': '%Y-%d-%m', 'geo_format': 'GEO2', 'usr_doc': True, 'JSON': False},
+    'Coursera': {'date_format': '%Y-%m-%d', 'geo_format': '', 'usr_doc': True, 'JSON': False},
+    'Platzi' : {'date_format': '%m-%d-%Y', 'geo_format': 'GEO3', 'usr_doc': False, 'JSON': False},
+    'Escuelita_Valores' : {'date_format': '%d-%m-%Y', 'geo_format': 'GEO3', 'usr_doc': False, 'JSON': True}
 }
 
 def generar_compras_dia(uni, qty=10, low_price=10, high_price =100):
@@ -87,7 +87,20 @@ def generar_cursos(uni, qty=1):
     pass
  
 def exportar_batch(uni):
-    pass
+    conn = connector.connect(user=username,
+                         password=password,
+                         host=host,
+                         database=uni)
+    
+    df_compras = pd.read_sql("SELECT * FROM compras WHERE fecha > DATE_SUB(CURDATE(), INTERVAL 4 DAY);", conn)
+
+    if not PAGES_FORMATS[uni]['JSON']:
+      filename = 'output/'+uni+'_' + str(datetime.now().date()) + '.csv'
+      df_compras.to_csv(filename, index=False, date_format=PAGES_FORMATS[uni]['date_format'])
+    else:
+      filename = 'output/'+uni+'_' + str(datetime.now().date()) + '.json'
+      df_compras.to_json(filename, index=False, date_format=PAGES_FORMATS[uni]['date_format'])
+       
 
 def generate_random_email():
   domains = [
