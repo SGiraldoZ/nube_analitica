@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 import random
 from random_location import generate_random_coordinates
+import json
 
 load_dotenv()
 
@@ -160,6 +161,10 @@ def generate_random_user_name():
   # Devuelve el nombre de usuario con los 5 dígitos aleatorios.
   return user_name + digits
 
+def exportar_params():
+  df = pd.DataFrame(PAGES_FORMATS)
+  df.to_json('output/params.json')
+   
     
 if __name__ == "__main__":
     # generar_cursos('Coursera')

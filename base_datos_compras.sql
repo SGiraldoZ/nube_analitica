@@ -16,7 +16,7 @@ CREATE TABLE compras (
   interrupcion VARCHAR(255) NULL,
   longitud FLOAT NULL,
   latitud FLOAT NULL,
-  id_plataforma INT NOT NULL,
+  id_plataforma INT,
   calificacion INT NULL,
   costo_servicio FLOAT NULL
 );
